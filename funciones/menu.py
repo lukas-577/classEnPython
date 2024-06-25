@@ -1,5 +1,6 @@
 from os import system
 from classes.usuario import usuario
+from funciones.digitarDatosProducto import DigitarDatosProducto
 
 
 class Menu:
@@ -8,6 +9,7 @@ class Menu:
         pass
 
     sesion = usuario()
+    digitar = DigitarDatosProducto()
 
     def menu(self):
         try:
@@ -25,7 +27,7 @@ class Menu:
             print("9.Cerrar Sesion")
             op = int(input("Digite Una Opcion : "))
             if op == 1:
-                self.__digitardatosdeproducto()
+                self.digitar.digitardatosdeproducto()
             if op == 2:
                 self.__digitardatosdeventas()
 

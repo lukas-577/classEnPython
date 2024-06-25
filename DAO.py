@@ -17,15 +17,18 @@ class DAO:
 # ----------------------------------------------------------------------
 
     def conectar(self):
-        self.con = pymysql.connect(
-            host="localhost",
-            user="root",
-            port=3309,
-            password="123456",
-            db="bd_sistema"
-        )
-
-        self.cursor = self.con.cursor()
+        try:
+            self.con = pymysql.connect(
+                host="localhost",
+                user="root",
+                port=3309,
+                password="123456",
+                db="bd_sistema"
+            )
+            self.cursor = self.con.cursor()
+            print("Conexión exitosa a MySQL")
+        except pymysql.Error as e:
+            print(f"Error de conexión a MySQL: {e}")
 
 # ----------------------------------------------------------------------
 
@@ -79,7 +82,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-
     def comprobarcodigoproducto(self, cantidad, texto):
         idproducto = ""
         while True:
@@ -116,6 +118,7 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
+
     def comprobarcodigodetalleventas(self, texto, cantidad):
         iddetalle = ""
         while True:
@@ -151,17 +154,19 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
+    pro = productos()
 
     def agregarproducto(self, pro):
         try:
             id = pro.getidproducto()
             nombre = pro.getnombre()
-            valorunitario = pro.getIdTipo()
+            valorunitario = pro.getprecio_unitario()
             cantidad = pro.getcantidad()
             total = pro.gettotal()
             self.conectar()
-            sql = "insert into productos values (%s, %s, %s, %s, %s)"
-            val = (id, nombre, valorunitario, cantidad, total)
+            self.con.cursor()
+            sql = "INSERT INTO Productos (Nombre,Codigo,Precio_Unitario,stock) values ( %s, %s, %s, %s)"
+            val = (nombre, valorunitario, cantidad, total)
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
@@ -203,7 +208,6 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
-
 
     def agregarinformedeventas(self, i):
         try:
@@ -252,6 +256,7 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
+
     def agregarfactura(self, fac):
         try:
 
@@ -272,7 +277,6 @@ class DAO:
 
 
 # ---------------------------------------------------------------------
-
 
     def obtenerproducto(self):
         try:
@@ -305,7 +309,6 @@ class DAO:
 
 # -----------------------------------------------------------------
 
-
     def obtenerdetallesventas(self):
         try:
             self.conectar()
@@ -335,11 +338,10 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-
     def buscarproducto(self, pro):
         try:
             self.conectar()
-            sql = 'select * from productos where id_producto = %s;'
+            sql = 'select * from Productos where ID_Producto = %s;'
             val = (pro)
             self.cursor.execute(sql, val)
             rs = self.cursor.fetchone()
@@ -355,7 +357,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
-
 
     def buscarventa(self, ven):
         try:
@@ -377,7 +378,6 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-
     def buscardetatallesdeventas(self, iddetalle):
         try:
             self.conectar()
@@ -398,7 +398,6 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-
     def buscarinformedeventas(self, idinforme):
         try:
             self.conectar()
@@ -417,6 +416,7 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
+
 
     def eliminarproducto(self, pro):
         try:
