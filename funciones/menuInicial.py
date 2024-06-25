@@ -1,12 +1,8 @@
 from os import system
-from DAO import DAO
-from classes.usuario import usuario
+from funciones.iniciarSeccion import IniciarSesion
 
 
 class MenuInicial:
-
-    d = DAO()
-    sesion = usuario()
 
     def __init__(self):
         pass
@@ -21,7 +17,8 @@ class MenuInicial:
                 print("3.Salir")
                 op = int(input("Digite Una opcion : "))
                 if op == 1:
-                    self.__iniciarsesion()
+                    i = IniciarSesion()
+                    i.iniciarsesion()
                 elif op == 2:
                     self.__crearCuenta()
                 elif op == 3:
@@ -29,4 +26,4 @@ class MenuInicial:
                     break
             except:
                 print("Error Al Digitar Opcion")
-                system("pause")
+                #     system("pause")
