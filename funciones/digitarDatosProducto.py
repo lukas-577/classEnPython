@@ -2,12 +2,14 @@ from os import system
 from classes.productos import productos
 from DAO import DAO
 
+
 d = DAO()
 pro = productos()
 
 
 def digitardatosdeproducto():
     try:
+        from funciones.menu import menu
         system("cls")
         cantidad = int(input("Digite cantidad del Producto: "))
         nombre = input("Digite El Nombre Del Producto: ")
@@ -15,7 +17,6 @@ def digitardatosdeproducto():
         codProducto = int(input("Digite El codigo del Producto: "))
 
         total = precio_unitario * cantidad
-        pro = productos()
         iva = (total * pro.getiva()) / 100
         total_final = total + iva
 
@@ -23,6 +24,7 @@ def digitardatosdeproducto():
         if validacion:
             print("El producto ingresado ya se encuentra registrado!")
         else:
+
             pro.setcodProducto(codProducto)
             pro.setnombre(nombre.upper())
             pro.setprecio_unitario(precio_unitario)
@@ -32,10 +34,13 @@ def digitardatosdeproducto():
             pro.settotal_final(total_final)
 
             # pro.set(self.sesion.getid_usuario())
-            d.agregarproducto(pro)
+            id_producto = d.agregarproducto(pro)
+            pro.setidProducto(id_producto)
+            print("id_producto", pro.getidProducto())
             print("\n--- Producto (" + nombre +
                   ") Registrado Correctamente!! ---", end="\n\n")
             system("pause")
+            menu()
             system("cls")
     except Exception as e:
         print(f"\n--- Error Al Ingresar Datos Del Producto: {e} ---")

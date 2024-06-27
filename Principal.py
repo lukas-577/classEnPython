@@ -5,8 +5,8 @@ from funciones.digitarDatosVenta import digitardatosdeventas
 
 def ejecutarPrograma():
     # Aquí se llama sólo al menú inicial, que manejará el flujo
-    # menuInicial()
-    digitardatosdeproducto()
+    menuInicial()
+    # digitardatosdeproducto()
     # digitardatosdeventas()
 
 

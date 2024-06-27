@@ -82,6 +82,7 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
+
     def comprobarcodigoproducto(self, cantidad, texto):
         idproducto = ""
         while True:
@@ -118,7 +119,6 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
-
     def comprobarcodigodetalleventas(self, texto, cantidad):
         iddetalle = ""
         while True:
@@ -154,6 +154,7 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
+
     def agregarproducto(self, pro):
         try:
             codProdcuto = pro.getcodProducto()
@@ -166,9 +167,11 @@ class DAO:
             sql = "INSERT INTO Productos (Nombre,Codigo,Precio_Unitario,stock) values ( %s, %s, %s, %s)"
             val = (nombre, codProdcuto, valorunitario,  cantidad)
             self.cursor.execute(sql, val)
+            id_producto = self.cursor.lastrowid  # Obtener el ID autoincremental
             self.con.commit()
             self.desconectar()
             print("\n--- Producto Agregado Correctamente!! ---\n")
+            return id_producto  # Devuelve el ID del producto insertado
         except pymysql.Error as e:
             print(f"\n--- Error al agregar producto (DAO): {str(e)} ---\n")
         system("pause")
@@ -207,6 +210,7 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
+
 
     def agregarinformedeventas(self, i):
         try:
@@ -256,7 +260,6 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
-
     def agregarfactura(self, fac):
         try:
 
@@ -277,6 +280,7 @@ class DAO:
 
 
 # ---------------------------------------------------------------------
+
 
     def obtenerproducto(self):
         try:
@@ -309,6 +313,7 @@ class DAO:
 
 # -----------------------------------------------------------------
 
+
     def obtenerdetallesventas(self):
         try:
             self.conectar()
@@ -338,6 +343,7 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
+
     def buscarproducto(self, pro):
         try:
             self.conectar()
@@ -359,6 +365,7 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
+
     def buscarventa(self, ven):
         try:
             self.conectar()
@@ -378,6 +385,7 @@ class DAO:
 
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
+
 
     def buscardetatallesdeventas(self, iddetalle):
         try:
@@ -399,6 +407,7 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
+
     def buscarinformedeventas(self, idinforme):
         try:
             self.conectar()
@@ -417,7 +426,6 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
-
 
     def eliminarproducto(self, pro):
         try:
@@ -472,6 +480,7 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
+
     def obtener_id_producto(self, nombre_producto):
         try:
             # Aquí realizas la consulta a la base de datos
@@ -482,6 +491,7 @@ class DAO:
             # Obtienes el resultado
             resultado = self.cursor.fetchone()  # Suponiendo que devuelve una sola fila
             self.desconectar()
+            system("pause")
             if resultado:
                 return resultado[0]  # Devuelve el id_producto encontrado
             else:

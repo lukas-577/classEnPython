@@ -3,21 +3,21 @@ from os import system
 
 from funciones.digitarDatosProducto import digitardatosdeproducto
 from funciones.digitarDatosVenta import digitardatosdeventas
-from classes.productos import productos
 
 # Inicializar los objetos necesarios
 
 # sesion = usuario()
-prod = productos()
 # digitar = digitardatosdeproducto()
 
 
 def menu():
     # importar localmente para evitar errores de importación circular
     from funciones.iniciarSeccion import sesion
+    from funciones.digitarDatosProducto import pro
     try:
         system("cls")
         print(f"--- MENU DE {sesion.getnombre_usuario().upper()} ---")
+        print(f"--- MENU DE {pro.getidProducto()} ---")
         print("1.Agregar Producto")
         print("2.Generar Ventas")
         print("3.Agregar factura")
@@ -31,6 +31,7 @@ def menu():
         op = int(input("Digite Una Opcion : "))
         if op == 1:
             digitardatosdeproducto()
+            system("pause")
         if op == 2:
             digitardatosdeventas()
 
