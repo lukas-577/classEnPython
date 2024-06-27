@@ -1,22 +1,12 @@
-from Funciones import Funciones
-from funciones.menuInicial import MenuInicial
-from funciones.digitarDatosProducto import DigitarDatosProducto
-from funciones.digitarDatosVenta import DigitarDatosVenta
+from funciones.menuInicial import menuInicial
+from funciones.digitarDatosProducto import digitardatosdeproducto
 
 
-class Principal:
-
-    f = Funciones()
-    menu = MenuInicial()
-    digitar = DigitarDatosProducto()
-    venta = DigitarDatosVenta()
-
-    def ejecutarPrograma(self):
-        # self.digitar.digitardatosdeproducto()
-        self.menu.menuInicial()
-        # self.venta.digitardatosdeventas()
-# -------------------------------------------------------------------
+def ejecutarPrograma():
+    # Aquí se llama sólo al menú inicial, que manejará el flujo
+    menuInicial()
+    # digitardatosdeproducto()
 
 
-p = Principal()
-p.ejecutarPrograma()
+if __name__ == "__main__":
+    ejecutarPrograma()

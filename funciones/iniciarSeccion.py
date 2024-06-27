@@ -1,18 +1,19 @@
 from os import system
 import getpass
 from classes.usuario import usuario
-from funciones.menu import Menu
+from funciones.menu import menu
 from DAO import DAO
 
 
 class IniciarSesion:
     def __init__(self):
         self.sesion = usuario()
-        self.menu = Menu()
+        # self.menu = Menu()
         self.instancia_dao = DAO()
 
     def iniciarsesion(self):
-        from funciones.menuInicial import MenuInicial  # Importación local
+        # Importar menuInicial localmente para evitar errores de importación circular
+        from funciones.menuInicial import menuInicial
         while True:
             try:
                 system("cls")
@@ -49,8 +50,7 @@ class IniciarSesion:
         if r is None:
             print("\n--- Error de Usuario y/o Contraseña!! ---\n")
             system("pause")
-            menu_inicial = MenuInicial()  # Instancia de MenuInicial si es necesario
-            menu_inicial.menuInicial()
+            menuInicial()
         else:
             self.sesion.setid_usuario(r[0])
             self.sesion.setnombre_usuario(r[1])
@@ -59,4 +59,4 @@ class IniciarSesion:
             print(
                 f"\n--- Bienvenido Usuario {self.sesion.getnombre_usuario().upper()} !! ---\n")
             system("pause")
-            self.menu.menu()
+            menu()
