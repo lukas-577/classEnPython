@@ -82,7 +82,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-
     def comprobarcodigoproducto(self, cantidad, texto):
         idproducto = ""
         while True:
@@ -119,6 +118,7 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
+
     def comprobarcodigodetalleventas(self, texto, cantidad):
         iddetalle = ""
         while True:
@@ -153,7 +153,6 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
-
 
     def agregarproducto(self, pro):
         try:
@@ -211,7 +210,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-
     def agregarinformedeventas(self, i):
         try:
             id = i.getidinforme()
@@ -260,27 +258,28 @@ class DAO:
 
 # ---------------------------------------------------------------------
 
+
     def agregarfactura(self, fac):
         try:
 
             # id = det.getid_detalle()
-            idfactura = fac.getidfactura()
+            # idfactura = fac.getidfactura()
             idventa = fac.getidventa()
             idcliente = fac.getidcliente()
 
             self.conectar()
-            sql = "insert into factura (idfactura, idventa, idcliente) values (%s, %s, %s, %s, %s)"
-            val = (idfactura, idventa, idcliente)
+            sql = "insert into Facturas (ID_Venta, ID_Cliente) values (%s, %s)"
+            val = (idventa, idcliente)
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
-        except:
-            print("\n--- Error Al Agregar factura de (DAO)!! ---", end="\n\n")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al agregar detalles de ventas (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ---------------------------------------------------------------------
-
 
     def obtenerproducto(self):
         try:
@@ -313,7 +312,6 @@ class DAO:
 
 # -----------------------------------------------------------------
 
-
     def obtenerdetallesventas(self):
         try:
             self.conectar()
@@ -343,7 +341,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-
     def buscarproducto(self, pro):
         try:
             self.conectar()
@@ -365,7 +362,6 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-
     def buscarventa(self, ven):
         try:
             self.conectar()
@@ -385,7 +381,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
-
 
     def buscardetatallesdeventas(self, iddetalle):
         try:
@@ -407,7 +402,6 @@ class DAO:
 # ----------------------------------------------------------------------
 # ----------------------------------------------------------------------
 
-
     def buscarinformedeventas(self, idinforme):
         try:
             self.conectar()
@@ -426,6 +420,7 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
+
 
     def eliminarproducto(self, pro):
         try:
@@ -479,7 +474,6 @@ class DAO:
 
 
 # ----------------------------------------------------------------------
-
 
     def obtener_id_producto(self, nombre_producto):
         try:

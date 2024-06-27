@@ -77,10 +77,8 @@ def digitardatosdeventas():
     fac.setidcliente(idcliente)
 
     d.agregarfactura(fac)
-    fac.setid_usuario(sesion.getid_usuario())
 
     system("cls")
-    print("\n--- Ejercicio ("+idventa +
-          ") Registrado Correctamente!! ---", end="\n\n")
+    print(f"\n--- Ejercicio ({idventa}) Registrado Correctamente!! ---\n")
     system("pause")
     # self.menu()
