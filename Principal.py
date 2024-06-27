@@ -10,7 +10,8 @@ class Principal:
     digitar = DigitarDatosProducto()
 
     def ejecutarPrograma(self):
-        self.digitar.digitardatosdeproducto()
+        # self.digitar.digitardatosdeproducto()
+        self.menu.menuInicial()
 
 # -------------------------------------------------------------------
 

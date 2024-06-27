@@ -1,5 +1,5 @@
 class productos:
-    __idproducto: 0
+    __codProducto: 0
     __nombre = ""
     __precio_unitario = ""
     __cantidad = 0
@@ -10,11 +10,11 @@ class productos:
     def __init__(self):
         pass
 
-    def getidproducto(self):
-        return self.__idproducto
+    def getcodProducto(self):
+        return self.__codProducto
 
-    def setidproducto(self, idproducto):
-        self.__idproducto = idproducto
+    def setcodProducto(self, codProducto):
+        self.__codProducto = codProducto
 
     def getnombre(self):
         return self.__nombre

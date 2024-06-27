@@ -154,11 +154,11 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-    pro = productos()
+        pro = productos()
 
     def agregarproducto(self, pro):
         try:
-            id = pro.getidproducto()
+            codProdcuto = pro.getcodProducto()
             nombre = pro.getnombre()
             valorunitario = pro.getprecio_unitario()
             cantidad = pro.getcantidad()
@@ -166,10 +166,11 @@ class DAO:
             self.conectar()
             self.con.cursor()
             sql = "INSERT INTO Productos (Nombre,Codigo,Precio_Unitario,stock) values ( %s, %s, %s, %s)"
-            val = (nombre, valorunitario, cantidad, total)
+            val = (nombre, codProdcuto, valorunitario,  cantidad)
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
+            print("\n--- Producto Agregado Correctamente!! ---\n")
         except pymysql.Error as e:
             print(f"\n--- Error al agregar producto (DAO): {str(e)} ---\n")
         system("pause")
@@ -341,7 +342,7 @@ class DAO:
     def buscarproducto(self, pro):
         try:
             self.conectar()
-            sql = 'select * from Productos where ID_Producto = %s;'
+            sql = 'select * from Productos where Codigo = %s;'
             val = (pro)
             self.cursor.execute(sql, val)
             rs = self.cursor.fetchone()
