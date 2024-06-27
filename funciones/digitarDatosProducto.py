@@ -3,6 +3,7 @@ from classes.productos import productos
 from DAO import DAO
 
 d = DAO()
+pro = productos()
 
 
 def digitardatosdeproducto():
@@ -31,7 +32,7 @@ def digitardatosdeproducto():
             pro.settotal_final(total_final)
 
             # pro.set(self.sesion.getid_usuario())
-            # self.d.agregarproducto(pro)
+            d.agregarproducto(pro)
             print("\n--- Producto (" + nombre +
                   ") Registrado Correctamente!! ---", end="\n\n")
             system("pause")

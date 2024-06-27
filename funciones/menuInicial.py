@@ -1,8 +1,8 @@
 from os import system
-from funciones.iniciarSeccion import IniciarSesion
 
 
 def menuInicial():
+    from funciones.iniciarSeccion import iniciar_sesion
     while True:
         try:
             system("cls")
@@ -12,8 +12,7 @@ def menuInicial():
             print("3.Salir")
             op = int(input("Digite Una opcion : "))
             if op == 1:
-                i = IniciarSesion()
-                i.iniciarsesion()
+                iniciar_sesion()
             # elif op == 2:
             #     self.__crearCuenta()
             # elif op == 3:

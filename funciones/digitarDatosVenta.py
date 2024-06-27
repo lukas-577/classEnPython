@@ -4,76 +4,83 @@ from classes.ventas import ventas
 from classes.detallesventas import detallesventas
 from classes.factura import factura
 from classes.usuario import usuario
+from funciones.digitarDatosProducto import pro
 from DAO import DAO
 
 
-class DigitarDatosVenta:
-    def __init__(self):
-        self.sesion = usuario()
-        self.d = DAO()
+def digitardatosdeventas():
+    # importar localmente para evitar errores de importación circular
+    from funciones.iniciarSeccion import sesion
 
-    def digitardatosdeventas(self):
-        system("cls")
+    d = DAO()
 
-        tipo_documento = input(
-            "Digite tipo de documento (Boleta o Factura) : ")
-        id_vendedor = self.sesion.getid_usuario()
+    system("cls")
 
-        ven = ventas()
+    tipo_documento = input(
+        "Digite tipo de documento (Boleta o Factura) : ")
+    id_vendedor = sesion.getid_usuario()
+    print("id_vendedor", id_vendedor)
 
-        fecha_actual = datetime.now()
+    ven = ventas()
 
-        ven.setfecha(fecha_actual)
-        ven.settipo_documento(tipo_documento)
-        ven.setidvendedor(id_vendedor)
+    fecha_actual = datetime.now()
 
-        cantidad = int(input("Digite la Cantidad de Productos a Agregar : "))
-        precio_unitario = int(input("Digite el Precio del Prodcuto : "))
-        total = precio_unitario * cantidad
+    ven.setfecha(fecha_actual)
+    ven.settipo_documento(tipo_documento)
+    ven.setidvendedor(id_vendedor)
 
-        total_neto = total
-        total_iva = total_neto * 0.19
-        total_final = total_neto + total_iva
+    cantidad = int(input("Digite la Cantidad de Productos a Agregar : "))
+    precio_unitario = int(input("Digite el Precio del Prodcuto : "))
+    total = precio_unitario * cantidad
 
-        ven.settotal_neto(total_neto)
-        ven.settotal_iva(total_iva)
-        ven.settotal_final(total_final)
+    total_neto = total
+    total_iva = total_neto * 0.19
+    total_final = total_neto + total_iva
 
-        # Se inserta en la tabla "ventas".
-        self.d.agregarventa(ven)
+    ven.settotal_neto(total_neto)
+    ven.settotal_iva(total_iva)
+    ven.settotal_final(total_final)
 
-        # idventagenerada = rs[0]
+    # Se inserta en la tabla "ventas".
+    rs = d.agregarventa(ven)
 
-        det = detallesventas()
-        # det.setid_venta(idventagenerada)
-        det.setcantidad(cantidad)
-        det.setprecio_unitario(precio_unitario)
-        det.settotal(total)
+    idventagenerada = rs[0]
+    print("idventagenerada", idventagenerada)
 
-        # Se inserta en la tabla "ventas".
-        self.d.agregardetallesventas(det)
+    id_producto = pro.getidProducto()
+    print("id_producto", id_producto)
 
-        system("cls")
-        print("--- VENTA GENERADA!! ---", end="\n")
-        print("--- DETALLE DE VENTA OK!! ---", end="\n\n")
+    det = detallesventas()
+    det.setid_producto(id_producto)
+    det.setid_venta(idventagenerada)
+    det.setcantidad(cantidad)
+    det.setprecio_unitario(precio_unitario)
+    det.settotal(total)
 
-        system("pause")
-        # menu = Menu()
-        # menu.menu()
+    # Se inserta en la tabla "ventas".
+    d.agregardetallesventas(det)
 
-        idfactura = int(input("ingrese id de factura"))
-        idventa = int(input("ingrese id de venta"))
-        idcliente = int(input("ingrese id cliente"))
-        fac = factura()
-        fac.setidfactura(idfactura)
-        fac.setidventa(idventa)
-        fac.setidcliente(idcliente)
+    system("cls")
+    print("--- VENTA GENERADA!! ---", end="\n")
+    print("--- DETALLE DE VENTA OK!! ---", end="\n\n")
 
-        self.d.agregarfactura(fac)
-        fac.setid_usuario(self.sesion.getid_usuario())
+    system("pause")
+    # menu = Menu()
+    # menu.menu()
 
-        system("cls")
-        print("\n--- Ejercicio ("+idventa +
-              ") Registrado Correctamente!! ---", end="\n\n")
-        system("pause")
-        # self.menu()
+    # idfactura = int(input("ingrese id de factura"))
+    idventa = int(input("ingrese id de venta : "))
+    idcliente = int(input("ingrese id cliente: "))
+    fac = factura()
+    # fac.setidfactura(idfactura)
+    fac.setidventa(idventa)
+    fac.setidcliente(idcliente)
+
+    d.agregarfactura(fac)
+    fac.setid_usuario(sesion.getid_usuario())
+
+    system("cls")
+    print("\n--- Ejercicio ("+idventa +
+          ") Registrado Correctamente!! ---", end="\n\n")
+    system("pause")
+    # self.menu()

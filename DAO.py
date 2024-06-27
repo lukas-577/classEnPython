@@ -154,8 +154,6 @@ class DAO:
 
 # ----------------------------------------------------------------------
 
-        pro = productos()
-
     def agregarproducto(self, pro):
         try:
             codProdcuto = pro.getcodProducto()
@@ -250,9 +248,10 @@ class DAO:
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
-        except:
-            print("\n--- Error Al Agregar detalles de ventas (DAO)!! ---", end="\n\n")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al agregar detalles de ventas (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ---------------------------------------------------------------------
@@ -351,9 +350,10 @@ class DAO:
                 return False
             else:
                 return True
-        except Exception:
-            print("\n--- Error Al buscar el producto  ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al encontrar producto (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ----------------------------------------------------------------------
@@ -467,4 +467,25 @@ class DAO:
             self.desconectar()
         except Exception:
             print("\n--- Error Al Intentar eliminar el informe ¡¡ ---")
+            system("pause")
+
+
+# ----------------------------------------------------------------------
+
+    def obtener_id_producto(self, nombre_producto):
+        try:
+            # Aquí realizas la consulta a la base de datos
+            self.conectar()
+            query = "SELECT id_producto FROM productos WHERE nombre = %s"
+            # Ejecutas la consulta
+            self.cursor.execute(query, (nombre_producto,))
+            # Obtienes el resultado
+            resultado = self.cursor.fetchone()  # Suponiendo que devuelve una sola fila
+            self.desconectar()
+            if resultado:
+                return resultado[0]  # Devuelve el id_producto encontrado
+            else:
+                return None  # Manejo si no se encuentra el producto
+        except Exception as e:
+            print(f"Error al obtener el id del producto: {e}")
             system("pause")

@@ -1,17 +1,20 @@
 from os import system
-from classes.usuario import usuario
+# from classes.usuario import usuario
+
 from funciones.digitarDatosProducto import digitardatosdeproducto
-from funciones.digitarDatosVenta import DigitarDatosVenta
+from funciones.digitarDatosVenta import digitardatosdeventas
 from classes.productos import productos
 
 # Inicializar los objetos necesarios
-sesion = usuario()
+
+# sesion = usuario()
 prod = productos()
 # digitar = digitardatosdeproducto()
-digitarventa = DigitarDatosVenta()
 
 
 def menu():
+    # importar localmente para evitar errores de importación circular
+    from funciones.iniciarSeccion import sesion
     try:
         system("cls")
         print(f"--- MENU DE {sesion.getnombre_usuario().upper()} ---")
@@ -29,7 +32,7 @@ def menu():
         if op == 1:
             digitardatosdeproducto()
         if op == 2:
-            digitarventa.digitardatosdeventas()
+            digitardatosdeventas()
 
         # if op == 3:
         #     __digitarinformedeventas()
