@@ -1,15 +1,15 @@
 from os import system
 from classes.usuario import usuario
 from funciones.digitarDatosProducto import DigitarDatosProducto
+from funciones.digitarDatosVenta import DigitarDatosVenta
 
 
 class Menu:
 
     def __init__(self):
-        pass
-
-    sesion = usuario()
-    digitar = DigitarDatosProducto()
+        self.sesion = usuario()
+        self.digitar = DigitarDatosProducto()
+        self.digitarventa = DigitarDatosVenta()
 
     def menu(self):
         try:
@@ -29,7 +29,7 @@ class Menu:
             if op == 1:
                 self.digitar.digitardatosdeproducto()
             if op == 2:
-                self.__digitardatosdeventas()
+                self.digitarventa.digitardatosdeventas()
 
             if op == 3:
                 self.__digitarinformedeventas()
@@ -50,7 +50,7 @@ class Menu:
                 self.__listardetalles_ventas()
             elif op == 11:
                 self.menuInicial()
-        except:
-            print("\n--- Error De Opcion !! ---")
+        except Exception as e:
+            print(f"\n--- Error De Opcion !! --- {str(e)}")
             system("pause")
             self.menu_inicial.menuInicial()

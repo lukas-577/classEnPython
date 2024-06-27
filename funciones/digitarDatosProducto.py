@@ -10,7 +10,7 @@ class DigitarDatosProducto:
 
     def digitardatosdeproducto(self):
         system("cls")
-
+        from funciones.menu import Menu
         # codProducto = int(input("Digite El ID del Producto : "))
         cantidad = int(input("digite cantidad del Producto : "))
         nombre = input("Digite El Nombre Del Producto : ")
@@ -42,4 +42,5 @@ class DigitarDatosProducto:
                   ") Registrado Correctamente!! ---", end="\n\n")
             system("pause")
             system("cls")
-            # self.menu()
+        menu = Menu()
+        menu.menu()

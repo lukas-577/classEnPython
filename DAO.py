@@ -190,7 +190,7 @@ class DAO:
             total_final = ven.gettotal_final()
 
             self.conectar()
-            sql = "insert into ventas (Fecha, Tipo_Documento, ID_Vendedor, Total_Neto, Total_IVA, Total_Final) values (%s, %s, %s, %s, %s, %s)"
+            sql = "insert into Ventas (Fecha, Tipo_Documento, ID_Vendedor, Total_Neto, Total_IVA, Total_Final) values (%s, %s, %s, %s, %s, %s)"
             val = (fecha, tipo_documento, id_vendedor,
                    total_neto, total_iva, total_final)
             self.cursor.execute(sql, val)
@@ -201,9 +201,9 @@ class DAO:
             id_recien_generado = self.cursor.fetchone()
             self.desconectar()
             return id_recien_generado
-        except:
-            print("\n--- Error Al agregar venta (DAO)!! ---", end="\n\n")
-            system("pause")
+        except pymysql.Error as e:
+            print(f"\n--- Error al agregar venta (DAO): {str(e)} ---\n")
+        system("pause")
 
 # ----------------------------------------------------------------------
 
@@ -245,7 +245,7 @@ class DAO:
             total = det.gettotal()
 
             self.conectar()
-            sql = "insert into detalles_venta (ID_Venta, ID_Producto, Cantidad, Precio_Unitario, Total) values (%s, %s, %s, %s, %s)"
+            sql = "insert into Detalles_Venta (ID_Venta, ID_Producto, Cantidad, Precio_Unitario, Total) values (%s, %s, %s, %s, %s)"
             val = (id_venta, id_producto, cantidad, precio_unitario, total)
             self.cursor.execute(sql, val)
             self.con.commit()
