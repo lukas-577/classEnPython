@@ -47,7 +47,7 @@ def digitardatosdeventas():
     rs = d.agregarventa(ven)
 
     idventagenerada = rs[0]
-    print("id venta generada Usalo al ingresar la factura", idventagenerada)
+    print("id venta generada ####Usalo al ingresar la factura####", idventagenerada)
 
     id_producto = pro.getidProducto()
     print("id_producto", id_producto)
@@ -62,6 +62,7 @@ def digitardatosdeventas():
     rescienGenerado = d.agregardetallesventas(det)
 
     det.setiddetalle(rescienGenerado[0])
+    system("pause")
 
     system("cls")
     print("--- VENTA GENERADA!! ---", end="\n")
@@ -83,6 +84,6 @@ def digitardatosdeventas():
     d.agregarfactura(fac)
 
     system("cls")
-    print(f"\n--- Ejercicio ({idventa}) Registrado Correctamente!! ---\n")
+    print(f"\n--- factura ({idventa}) Registrado Correctamente!! ---\n")
     system("pause")
     menu()

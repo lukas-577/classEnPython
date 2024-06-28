@@ -15,6 +15,8 @@ def eliminarventa():
             print("\n--- Venta Eliminada Correctamente!! ---")
         else:
             print("\n--- Venta No Encontrada!! ---")
+        system("pause")
+        menu()
     except:
         print("\n--- Error Al Buscar la venta!! ---")
         system("pause")

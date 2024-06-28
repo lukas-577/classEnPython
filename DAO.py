@@ -252,13 +252,13 @@ class DAO:
             val = (id_venta, id_producto, cantidad, precio_unitario, total)
             self.cursor.execute(sql, val)
             self.con.commit()
-            self.desconectar()
 
             sql = "SELECT LAST_INSERT_ID();"
             self.cursor.execute(sql)
             id_recien_generado = self.cursor.fetchone()
             self.desconectar()
             return id_recien_generado
+
         except pymysql.Error as e:
             print(
                 f"\n--- Error al agregar detalles de ventas (DAO): {str(e)} ---\n")
@@ -284,7 +284,7 @@ class DAO:
             self.desconectar()
         except pymysql.Error as e:
             print(
-                f"\n--- Error al agregar detalles de ventas (DAO): {str(e)} ---\n")
+                f"\n--- Error al agregar factura (DAO): {str(e)} ---\n")
         system("pause")
 
 
@@ -353,7 +353,7 @@ class DAO:
     def buscarproducto(self, pro):
         try:
             self.conectar()
-            sql = 'select * from Productos where Codigo = %s;'
+            sql = 'select * from Productos where ID_Producto = %s;'
             val = (pro)
             self.cursor.execute(sql, val)
             rs = self.cursor.fetchone()

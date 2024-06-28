@@ -14,6 +14,8 @@ def eliminarproducto():
             print("Producto Eliminado" + str(pro.getidProducto()))
         else:
             print("\n--- Producto No Encontrado!! ---")
+        system("pause")
+        menu()
     except Exception as e:
         print(f"\n--- Error Al Buscar el producto!! --- {str(e)}")
         system("pause")

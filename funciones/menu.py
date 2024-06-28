@@ -20,8 +20,8 @@ def menu():
         print("1.Agregar Producto")
         print("2.Generar Ventas, Agregar factura y Agregar detalles de ventas")
         print("3.Agregar informe de ventas ")
-        print("4. eliminar detalles de ventas")
-        print("5.eliminar producto depende de eliminar detalles de ventas por fk")
+        print("4. eliminar detalles de ventas depende de la venta")
+        print("5.eliminar producto ")
         print("6. eliminar venta")
         print("7.eliminar informedeventas")
 

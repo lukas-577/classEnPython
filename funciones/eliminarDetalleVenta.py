@@ -16,6 +16,7 @@ def eliminardetallesdeventas():
             print("Detalle Eliminado")
         else:
             print("\n--- Detalle No Encontrado!! ---")
+        system("pause")
         menu()
     except:
         print("\n--- Error Al Buscar el detalle!! ---")
