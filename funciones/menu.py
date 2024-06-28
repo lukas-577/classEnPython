@@ -24,10 +24,11 @@ def menu():
         print("3.Agregar factura")
         print("4.Agregar informe de ventas ")
         print("5.Agregar detalles de ventas")
+        print("8. eliminar detalles de ventas")
         print("6.eliminar producto")
         print("7. eliminar venta")
         print("7.eliminar informedeventas")
-        print("8. eliminar detalles de ventas")
+
         print("9.Cerrar Sesion")
         op = int(input("Digite Una Opcion : "))
         if op == 1:

@@ -2,6 +2,8 @@ from funciones.menuInicial import menuInicial
 from funciones.digitarDatosProducto import digitardatosdeproducto
 from funciones.digitarDatosVenta import digitardatosdeventas
 from funciones.digitarInformeDeVentas import digitarinformedeventas
+from funciones.eliminarProducto import eliminarproducto
+from funciones.eliminarDetalleVenta import eliminardetallesdeventas
 
 
 def ejecutarPrograma():
@@ -9,7 +11,9 @@ def ejecutarPrograma():
     # menuInicial()
     # digitardatosdeproducto()
     # digitardatosdeventas()
-    digitarinformedeventas()
+    # digitarinformedeventas()
+    # eliminarproducto()
+    eliminardetallesdeventas()
 
 
 if __name__ == "__main__":

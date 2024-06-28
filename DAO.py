@@ -394,7 +394,7 @@ class DAO:
     def buscardetatallesdeventas(self, iddetalle):
         try:
             self.conectar()
-            sql = 'select * from detalles_ventas where id_detalle = %s;'
+            sql = 'select * from Detalles_Venta where ID_Detalle = %s;'
             val = (iddetalle)
             self.cursor.execute(sql, val)
             rs = self.cursor.fetchone()
@@ -403,9 +403,10 @@ class DAO:
                 return False
             else:
                 return True
-        except Exception:
-            print("\n--- Error Al buscar el detalle de la venta   ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al buscar id_detalle (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ----------------------------------------------------------------------
@@ -434,14 +435,15 @@ class DAO:
     def eliminarproducto(self, pro):
         try:
             self.conectar()
-            sql = 'delete from productos where id_producto = %s;'
+            sql = 'delete from Productos where id_producto = %s;'
             val = (pro)
             self.cursor.execute(sql, val)
-            self.connection.commit()
+            self.con.commit()
             self.desconectar()
-        except Exception:
-            print("\n--- Error Al Intentar el producto ¡¡ ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al eliminar producto (DAO): {str(e)} ---\n")
+        system("pause")
 
 # ----------------------------------------------------------------------
     def eliminarventa(self, ven):
@@ -450,7 +452,7 @@ class DAO:
             sql = 'delete from ventas where id_venta = %s;'
             val = (ven)
             self.cursor.execute(sql, val)
-            self.connection.commit()
+            self.con.commit()
             self.desconectar()
         except Exception:
             print("\n--- Error Al Intentar la venta ¡¡ ---")
@@ -459,14 +461,15 @@ class DAO:
     def eliminardetallesventas(self, ven):
         try:
             self.conectar()
-            sql = 'delete from detalles_ventas where id_detalle = %s;'
+            sql = 'delete from Detalles_Venta where Id_Detalle = %s;'
             val = (ven)
             self.cursor.execute(sql, val)
-            self.connection.commit()
+            self.con.commit()
             self.desconectar()
-        except Exception:
-            print("\n--- Error Al Intentar eliminar el detalle ¡¡ ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al eliminar detalle (DAO): {str(e)} ---\n")
+        system("pause")
 
 # ----------------------------------------------------------------------
     def eliminarinformedeventas(self, ven):
@@ -475,7 +478,7 @@ class DAO:
             sql = 'delete from informe_ventas where id_informe = %s;'
             val = (ven)
             self.cursor.execute(sql, val)
-            self.connection.commit()
+            self.con.commit()
             self.desconectar()
         except Exception:
             print("\n--- Error Al Intentar eliminar el informe ¡¡ ---")

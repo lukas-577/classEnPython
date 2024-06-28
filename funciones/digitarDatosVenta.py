@@ -7,6 +7,8 @@ from classes.usuario import usuario
 from funciones.digitarDatosProducto import pro
 from DAO import DAO
 
+det = detallesventas()
+
 
 def digitardatosdeventas():
     # importar localmente para evitar errores de importación circular
@@ -50,7 +52,6 @@ def digitardatosdeventas():
     id_producto = pro.getidProducto()
     print("id_producto", id_producto)
 
-    det = detallesventas()
     det.setid_producto(id_producto)
     det.setid_venta(idventagenerada)
     det.setcantidad(cantidad)

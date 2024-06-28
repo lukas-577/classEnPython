@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 def digitarinformedeventas():
+    from funciones.iniciarSeccion import sesion
     d = DAO()
     fecha_actual = datetime.now()
     system("cls")
@@ -24,7 +25,9 @@ def digitarinformedeventas():
         input("Ingrese el monto de IVA de las facturas: "))
     monto_facturas_total = float(
         input("Ingrese el monto total de las facturas: "))
-    id_vendedor = int(input("Ingrese el ID del vendedor: "))
+    # id_vendedor = int(input("Ingrese el ID del vendedor: "))
+
+    id_vendedor = sesion.getid_usuario()
 
     validacion = d.buscarinformedeventas(idinforme)
     if validacion:
@@ -43,9 +46,13 @@ def digitarinformedeventas():
         informe.setid_vendedor(id_vendedor)
         # Asumiendo que tienes un método setfecha en tu clase informe_ventas
         informe.setfecha(fecha_actual)
-
-        d.agregarinformedeventas(informe)
-        system("cls")
-        print(
-            f"\n--- Informe de ventas ({idinforme}) Registrado Correctamente!! ---\n")
-        system("pause")
+        if id_vendedor == 0:
+            print(
+                "\n--- No se puede registrar el informe de ventas, ya que no se ha iniciado sesión ---\n")
+            system("pause")
+        else:
+            d.agregarinformedeventas(informe)
+            system("cls")
+            print(
+                f"\n--- Informe de ventas ({idinforme}) Registrado Correctamente!! ---\n")
+            system("pause")
