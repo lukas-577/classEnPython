@@ -40,8 +40,10 @@ def digitardatosdeproducto():
             print("\n--- Producto (" + nombre +
                   ") Registrado Correctamente!! ---", end="\n\n")
             system("pause")
-            menu()
+
             system("cls")
+
+        menu()
     except Exception as e:
         print(f"\n--- Error Al Ingresar Datos Del Producto: {e} ---")
         system("pause")

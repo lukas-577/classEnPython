@@ -11,7 +11,7 @@ def eliminarproducto():
         validacion = d.buscarproducto(pro.getidProducto())
         if validacion == True:
             d.eliminarproducto(pro.getidProducto())
-            print("Producto Eliminado")
+            print("Producto Eliminado" + str(pro.getidProducto()))
         else:
             print("\n--- Producto No Encontrado!! ---")
     except Exception as e:

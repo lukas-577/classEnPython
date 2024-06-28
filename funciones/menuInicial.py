@@ -3,6 +3,7 @@ from os import system
 
 def menuInicial():
     from funciones.iniciarSeccion import iniciar_sesion
+    from funciones.salir import salir
     while True:
         try:
             system("cls")
@@ -15,9 +16,9 @@ def menuInicial():
                 iniciar_sesion()
             # elif op == 2:
             #     self.__crearCuenta()
-            # elif op == 3:
-            #     self.__salir()
-            #     break
+            elif op == 3:
+                salir()
+                break
         except Exception as e:
             print("Error: ", e)
             system("pause")

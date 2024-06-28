@@ -1,14 +1,12 @@
 from os import system
-# from classes.usuario import usuario
 
 from funciones.digitarDatosProducto import digitardatosdeproducto
 from funciones.digitarDatosVenta import digitardatosdeventas
 from funciones.digitarInformeDeVentas import digitarinformedeventas
-
-# Inicializar los objetos necesarios
-
-# sesion = usuario()
-# digitar = digitardatosdeproducto()
+from funciones.eliminarProducto import eliminarproducto
+from funciones.eliminarDetalleVenta import eliminardetallesdeventas
+from funciones.eliminarVenta import eliminarventa
+from funciones.eliminarInformeVenta import eliminarinformedeventas
 
 
 def menu():
@@ -18,15 +16,13 @@ def menu():
     try:
         system("cls")
         print(f"--- MENU DE {sesion.getnombre_usuario().upper()} ---")
-        print(f"--- MENU DE {pro.getidProducto()} ---")
+        print(f"--- Prodcuto con id:  {pro.getidProducto()} ---")
         print("1.Agregar Producto")
-        print("2.Generar Ventas")
-        print("3.Agregar factura")
-        print("4.Agregar informe de ventas ")
-        print("5.Agregar detalles de ventas")
-        print("8. eliminar detalles de ventas")
-        print("6.eliminar producto depende de eliminar detalles de ventas por fk")
-        print("7. eliminar venta")
+        print("2.Generar Ventas, Agregar factura y Agregar detalles de ventas")
+        print("3.Agregar informe de ventas ")
+        print("4. eliminar detalles de ventas")
+        print("5.eliminar producto depende de eliminar detalles de ventas por fk")
+        print("6. eliminar venta")
         print("7.eliminar informedeventas")
 
         print("9.Cerrar Sesion")
@@ -36,18 +32,23 @@ def menu():
             system("pause")
         if op == 2:
             digitardatosdeventas()
+            system("pause")
 
         if op == 3:
             digitarinformedeventas()
-        # if op == 4:
-        #     __eliminarproducto()
-        # if op == 5:
-        #     __eliminarinformedeventas()
-        # if op == 6:
-        #     __eliminardetallesdeventas()
-
-        # if op == 7:
-        #     __listarproducto
+            system("pause")
+        if op == 4:
+            eliminardetallesdeventas()
+            system("pause")
+        if op == 5:
+            eliminarproducto()
+            system("pause")
+        if op == 6:
+            eliminarventa()
+            system("pause")
+        if op == 7:
+            eliminarinformedeventas()
+            system("pause")
         # if op == 8:
         #     __listarventas()
         # if op == 9:

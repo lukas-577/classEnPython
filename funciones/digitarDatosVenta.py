@@ -14,6 +14,7 @@ ven = ventas()
 def digitardatosdeventas():
     # importar localmente para evitar errores de importación circular
     from funciones.iniciarSeccion import sesion
+    from funciones.menu import menu
 
     d = DAO()
 
@@ -46,7 +47,7 @@ def digitardatosdeventas():
     rs = d.agregarventa(ven)
 
     idventagenerada = rs[0]
-    print("idventagenerada", idventagenerada)
+    print("id venta generada Usalo al ingresar la factura", idventagenerada)
 
     id_producto = pro.getidProducto()
     print("id_producto", id_producto)
@@ -58,7 +59,9 @@ def digitardatosdeventas():
     det.settotal(total)
 
     # Se inserta en la tabla "ventas".
-    d.agregardetallesventas(det)
+    rescienGenerado = d.agregardetallesventas(det)
+
+    det.setiddetalle(rescienGenerado[0])
 
     system("cls")
     print("--- VENTA GENERADA!! ---", end="\n")
@@ -69,7 +72,8 @@ def digitardatosdeventas():
     # menu.menu()
 
     # idfactura = int(input("ingrese id de factura"))
-    idventa = int(input("ingrese id de venta : "))
+    print("\n--- Ingrese los datos de la factura ---\n")
+    idventa = int(input("ingrese id de venta generada : "))
     idcliente = int(input("ingrese id cliente: "))
     fac = factura()
     # fac.setidfactura(idfactura)
@@ -81,4 +85,4 @@ def digitardatosdeventas():
     system("cls")
     print(f"\n--- Ejercicio ({idventa}) Registrado Correctamente!! ---\n")
     system("pause")
-    # self.menu()
+    menu()

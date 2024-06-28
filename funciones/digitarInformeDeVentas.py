@@ -9,6 +9,7 @@ informe = informe_ventas()
 
 def digitarinformedeventas():
     from funciones.iniciarSeccion import sesion
+    from funciones.menu import menu
     d = DAO()
     fecha_actual = datetime.now()
     system("cls")
@@ -59,3 +60,4 @@ def digitarinformedeventas():
             print(
                 f"\n--- Informe de ventas ({idinforme}) Registrado Correctamente!! ---\n")
             system("pause")
+        menu()
