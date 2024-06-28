@@ -3,6 +3,7 @@ from os import system
 
 from funciones.digitarDatosProducto import digitardatosdeproducto
 from funciones.digitarDatosVenta import digitardatosdeventas
+from funciones.digitarInformeDeVentas import digitarinformedeventas
 
 # Inicializar los objetos necesarios
 
@@ -35,8 +36,8 @@ def menu():
         if op == 2:
             digitardatosdeventas()
 
-        # if op == 3:
-        #     __digitarinformedeventas()
+        if op == 3:
+            digitarinformedeventas()
         # if op == 4:
         #     __eliminarproducto()
         # if op == 5:
