@@ -373,7 +373,7 @@ class DAO:
     def buscarventa(self, ven):
         try:
             self.conectar()
-            sql = 'select * from ventas where id_venta = %s;'
+            sql = 'select * from Ventas where ID_Venta = %s;'
             val = (ven)
             self.cursor.execute(sql, val)
             rs = self.cursor.fetchone()
@@ -382,9 +382,10 @@ class DAO:
                 return False
             else:
                 return True
-        except Exception:
-            print("\n--- Error Al buscar la venta  ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al buscar id_venta (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ----------------------------------------------------------------------
@@ -425,9 +426,10 @@ class DAO:
                 return False
             else:
                 return True
-        except Exception:
-            print("\n--- Error Al buscar el detalle de la venta   ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al buscar id_informe (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ----------------------------------------------------------------------
@@ -449,14 +451,15 @@ class DAO:
     def eliminarventa(self, ven):
         try:
             self.conectar()
-            sql = 'delete from ventas where id_venta = %s;'
+            sql = 'delete from Ventas where ID_Venta = %s;'
             val = (ven)
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
-        except Exception:
-            print("\n--- Error Al Intentar la venta ¡¡ ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al eliminar venta (DAO): {str(e)} ---\n")
+        system("pause")
 
     def eliminardetallesventas(self, ven):
         try:
@@ -480,9 +483,10 @@ class DAO:
             self.cursor.execute(sql, val)
             self.con.commit()
             self.desconectar()
-        except Exception:
-            print("\n--- Error Al Intentar eliminar el informe ¡¡ ---")
-            system("pause")
+        except pymysql.Error as e:
+            print(
+                f"\n--- Error al eliminar informe (DAO): {str(e)} ---\n")
+        system("pause")
 
 
 # ----------------------------------------------------------------------

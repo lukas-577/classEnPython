@@ -12,6 +12,8 @@ def eliminarproducto():
         if validacion == True:
             d.eliminarproducto(pro.getidProducto())
             print("Producto Eliminado")
+        else:
+            print("\n--- Producto No Encontrado!! ---")
     except Exception as e:
         print(f"\n--- Error Al Buscar el producto!! --- {str(e)}")
         system("pause")

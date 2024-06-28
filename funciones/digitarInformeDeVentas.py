@@ -4,6 +4,9 @@ from DAO import DAO
 from datetime import datetime
 
 
+informe = informe_ventas()
+
+
 def digitarinformedeventas():
     from funciones.iniciarSeccion import sesion
     d = DAO()
@@ -33,7 +36,7 @@ def digitarinformedeventas():
     if validacion:
         print("El informe de venta ingresado ya se encuentra registrado!")
     else:
-        informe = informe_ventas()
+
         informe.setidinforme(idinforme)
         informe.setcantidad_ventas_boletas(cantidad_ventas_boleta)
         informe.setmonto_boletas_neto(monto_boletas_neto)

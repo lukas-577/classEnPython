@@ -13,6 +13,8 @@ def eliminardetallesdeventas():
         if validacion == True:
             d.eliminardetallesventas(det.getiddetalle())
             print("Detalle Eliminado")
+        else:
+            print("\n--- Detalle No Encontrado!! ---")
     except:
         print("\n--- Error Al Buscar el detalle!! ---")
         system("pause")

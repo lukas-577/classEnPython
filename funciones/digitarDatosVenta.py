@@ -8,6 +8,7 @@ from funciones.digitarDatosProducto import pro
 from DAO import DAO
 
 det = detallesventas()
+ven = ventas()
 
 
 def digitardatosdeventas():
@@ -22,8 +23,6 @@ def digitardatosdeventas():
         "Digite tipo de documento (Boleta o Factura) : ")
     id_vendedor = sesion.getid_usuario()
     print("id_vendedor", id_vendedor)
-
-    ven = ventas()
 
     fecha_actual = datetime.now()
 

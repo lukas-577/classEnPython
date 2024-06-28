@@ -25,7 +25,7 @@ def menu():
         print("4.Agregar informe de ventas ")
         print("5.Agregar detalles de ventas")
         print("8. eliminar detalles de ventas")
-        print("6.eliminar producto")
+        print("6.eliminar producto depende de eliminar detalles de ventas por fk")
         print("7. eliminar venta")
         print("7.eliminar informedeventas")
 
